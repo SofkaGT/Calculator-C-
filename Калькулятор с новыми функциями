@@ -1,0 +1,80 @@
+#include <iostream>
+
+// Функция для вычисления квадрата числа
+double square(double a) {
+    return a * a;
+}
+
+// Функция для вычисления куба числа
+double cube(double a) {
+    return a * a * a;
+}
+
+// Функция для вычисления корня числа
+double squareRoot(double a) {
+    if (a >= 0) {
+        return sqrt(a);
+    } else {
+        std::cout << "Ошибка: невозможно извлечь корень из отрицательного числа!";
+        return 0;
+    }
+}
+
+// Функция для вычисления обратного числа
+double reciprocal(double a) {
+    if (a != 0) {
+        return 1 / a;
+    } else {
+        std::cout << "Ошибка: деление на ноль!";
+        return 0;
+    }
+}
+
+int main() {
+    char op;
+    double num1, num2;
+
+    std::cout << "Введите оператор (+, -, *, /, ^, s, c, r, i): ";
+    std::cin >> op;
+
+    std::cout << "Введите число: ";
+    std::cin >> num1;
+
+    // Если операция требует два числа, запросить второе число
+    if (op != 's' && op != 'c' && op != 'r' && op != 'i') {
+        std::cout << "Введите второе число: ";
+        std::cin >> num2;
+    }
+
+    switch(op) {
+        case '+':
+            std::cout << num1 << " + " << num2 << " = " << add(num1, num2);
+            break;
+        case '-':
+            std::cout << num1 << " - " << num2 << " = " << subtract(num1, num2);
+            break;
+        case '*':
+            std::cout << num1 << " * " << num2 << " = " << multiply(num1, num2);
+            break;
+        case '/':
+            std::cout << num1 << " / " << num2 << " = " << divide(num1, num2);
+            break;
+        case '^':
+            std::cout << num1 << "^2 = " << square(num1);
+            break;
+        case 's':
+            std::cout << "sqrt(" << num1 << ") = " << squareRoot(num1);
+            break;
+        case 'c':
+            std::cout << num1 << "^3 = " << cube(num1);
+            break;
+        case 'r':
+            std::cout << "1/" << num1 << " = " << reciprocal(num1);
+            break;
+        default:
+            std::cout << "Ошибка: Некорректный оператор!";
+            break;
+    }
+
+    return 0;
+}
